@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">neshan</string>
+    <string name="layerTraffic">لایه ترافیک</string>
+    <string name="placeInfo">اطلاعات مکان ها</string>
 </resources>

@@ -22,24 +22,52 @@
         android:layout_gravity="right|bottom"
         android:layout_margin="12dp"/>
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        android:layout_margin="12dp"
-        app:cardBackgroundColor="@android:color/holo_red_light">
+        android:orientation="horizontal">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="لایه ترافیک"
-            android:checked="false"
-            android:padding="4dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            app:useMaterialThemeColors="true"/>
+            app:cardCornerRadius="12dp"
+            android:layout_margin="12dp"
+            app:cardBackgroundColor="@android:color/holo_red_light">
 
-    </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/trafficSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/layerTraffic"
+                android:checked="false"
+                android:padding="4dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:useMaterialThemeColors="true"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            android:layout_margin="12dp"
+            app:cardBackgroundColor="@android:color/holo_red_light">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/placeInfoSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeInfo"
+                android:checked="false"
+                android:padding="4dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:useMaterialThemeColors="true"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/layerBtn"

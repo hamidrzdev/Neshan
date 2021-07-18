@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.location.Location
 import android.os.Bundle
-import android.os.ProxyFileDescriptorCallback
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.carto.styles.AnimationStyle
@@ -82,9 +81,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun initMap(){
+    fun initMap() {
         binding.map.isPoiEnabled = true
-        binding.map.isTrafficEnabled = true
+        showTrafficLayer()
     }
 
     override fun onResume() {
@@ -169,5 +168,10 @@ class MainActivity : AppCompatActivity() {
         locationClient.removeLocationUpdates(locationCallback)
     }
 
+    fun showTrafficLayer() {
+        binding.trafficSwitch.setOnClickListener {
+            binding.map.isTrafficEnabled = binding.trafficSwitch.isChecked
+        }
+    }
 
 }
