@@ -2,9 +2,15 @@ package com.hamiddev.neshan
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.carto.styles.AnimationStyle
@@ -12,6 +18,7 @@ import com.carto.styles.AnimationStyleBuilder
 import com.carto.styles.AnimationType
 import com.carto.styles.MarkerStyleBuilder
 import com.google.android.gms.location.*
+import com.google.android.material.snackbar.Snackbar
 import com.hamiddev.neshan.databinding.ActivityMainBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -56,16 +63,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.locateBtn.setOnClickListener {
-            locationClient.lastLocation.addOnSuccessListener { location ->
-                location?.let {
-                    onLocationChanged(LatLng(it.latitude, it.longitude))
+            if (isGranted) {
+                locationClient.lastLocation.addOnSuccessListener { location ->
+                    location?.let {
+                        onLocationChanged(LatLng(it.latitude, it.longitude))
+                    }
                 }
-            }
+            } else
+                showSnackBarToGetPermission(it)
         }
 
-
         binding.map.setOnMapClickListener {
-            onLocationChanged(it)
+            if (isGranted)
+                onLocationChanged(it)
+            else
+                showSnackBarToGetPermission(findViewById(R.id.mainRoot))
         }
 
         initMap()
@@ -101,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         moveCamera(latLng)
     }
 
-    fun createMarker(location: LatLng): Marker {
+    private fun createMarker(location: LatLng): Marker {
 
         if (marker != null)
             binding.map.removeMarker(marker)
@@ -130,7 +142,7 @@ class MainActivity : AppCompatActivity() {
         return myMarker
     }
 
-    fun getPermission() {
+    private fun getPermission() {
         Dexter.withContext(this)
             .withPermissions(
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -154,7 +166,7 @@ class MainActivity : AppCompatActivity() {
             }).check()
     }
 
-    fun moveCamera(latLng: LatLng) {
+    private fun moveCamera(latLng: LatLng) {
         binding.map.moveCamera(latLng, 1.5F)
         binding.map.setZoom(13f, 0.5f)
     }
@@ -164,20 +176,35 @@ class MainActivity : AppCompatActivity() {
         locationClient.requestLocationUpdates(LocationRequest(), locationCallback, null)
     }
 
-    fun stopUpdatingLocation() {
+    private fun stopUpdatingLocation() {
         locationClient.removeLocationUpdates(locationCallback)
     }
 
-    fun showTrafficLayer() {
+    private fun showTrafficLayer() {
         binding.trafficSwitch.setOnClickListener {
             binding.map.isTrafficEnabled = binding.trafficSwitch.isChecked
         }
     }
 
-    fun showPlaceInfo(){
+    private fun showPlaceInfo() {
         binding.placeInfoSwitch.setOnClickListener {
             binding.map.isPoiEnabled = binding.placeInfoSwitch.isChecked
         }
+    }
+
+    private fun showSnackBarToGetPermission(view: View){
+        Snackbar.make(
+            view,
+            "دسترسی به Location داده نشده است",
+            Snackbar.LENGTH_SHORT
+        )
+            .setAction("دسترسی") {
+                startActivity(Intent().apply {
+                    action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                    data = Uri.fromParts("package",BuildConfig.APPLICATION_ID,null)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                })
+            }.show()
     }
 
 }
