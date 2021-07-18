@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initMap() {
-        binding.map.isPoiEnabled = true
+        showPlaceInfo()
         showTrafficLayer()
     }
 
@@ -171,6 +171,12 @@ class MainActivity : AppCompatActivity() {
     fun showTrafficLayer() {
         binding.trafficSwitch.setOnClickListener {
             binding.map.isTrafficEnabled = binding.trafficSwitch.isChecked
+        }
+    }
+
+    fun showPlaceInfo(){
+        binding.placeInfoSwitch.setOnClickListener {
+            binding.map.isPoiEnabled = binding.placeInfoSwitch.isChecked
         }
     }
 

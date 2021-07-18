@@ -6,79 +6,90 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <org.neshan.mapsdk.MapView
-        android:id="@+id/map"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/locateBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_baseline_location_on_24"
-        android:background="@drawable/circle"
-        android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        android:layout_gravity="right|bottom"
-        android:layout_margin="12dp"/>
+        <org.neshan.mapsdk.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/locateBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_baseline_location_on_24"
+            android:background="@drawable/circle"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="12dp"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            android:layout_margin="12dp"
-            app:cardBackgroundColor="@android:color/holo_red_light">
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/locateBtn">
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/trafficSwitch"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/layerTraffic"
-                android:checked="false"
-                android:padding="4dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                app:useMaterialThemeColors="true"/>
+                app:cardCornerRadius="12dp"
+                android:layout_margin="12dp"
+                app:cardBackgroundColor="@android:color/holo_red_light">
 
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/trafficSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/layerTraffic"
+                    android:checked="false"
+                    android:padding="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    app:useMaterialThemeColors="true"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            android:layout_margin="12dp"
-            app:cardBackgroundColor="@android:color/holo_red_light">
+            </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/placeInfoSwitch"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/placeInfo"
-                android:checked="false"
-                android:padding="4dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                app:useMaterialThemeColors="true"/>
+                app:cardCornerRadius="12dp"
+                android:layout_margin="12dp"
+                app:cardBackgroundColor="@android:color/holo_red_light">
 
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/placeInfoSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeInfo"
+                    android:checked="false"
+                    android:padding="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    app:useMaterialThemeColors="true"/>
 
-    </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-    <ImageButton
-        android:id="@+id/layerBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@drawable/ic_baseline_layers_24"
-        android:background="@drawable/circle"
-        android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        android:layout_gravity="right|top"
-        android:layout_margin="12dp"/>
+        </LinearLayout>
 
+        <ImageButton
+            android:id="@+id/layerBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_baseline_layers_24"
+            android:background="@drawable/circle"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="12dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
