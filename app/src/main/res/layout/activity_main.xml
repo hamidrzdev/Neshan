@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <org.neshan.mapsdk.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageButton
+        android:id="@+id/locateBtn"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:srcCompat="@drawable/ic_baseline_location_on_24"
+        android:background="@drawable/circle"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:layout_gravity="right|bottom"
+        android:layout_margin="12dp"/>
+
+    
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
