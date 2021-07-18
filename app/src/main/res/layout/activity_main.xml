@@ -13,8 +13,8 @@
 
     <ImageButton
         android:id="@+id/locateBtn"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         app:srcCompat="@drawable/ic_baseline_location_on_24"
         android:background="@drawable/circle"
         android:adjustViewBounds="true"
@@ -22,6 +22,35 @@
         android:layout_gravity="right|bottom"
         android:layout_margin="12dp"/>
 
-    
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="@android:color/holo_red_light">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لایه ترافیک"
+            android:checked="false"
+            android:padding="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:useMaterialThemeColors="true"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageButton
+        android:id="@+id/layerBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_baseline_layers_24"
+        android:background="@drawable/circle"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:layout_gravity="right|top"
+        android:layout_margin="12dp"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
